@@ -10,14 +10,9 @@ import os
 class Stegno:
 
     art = '''
-┌──┐▒▒▒▒▒▒▒▒▒▒▒▒┌───┐┌┐▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒┌┐▒▒▒▒▒▒
-└┤├┘▒▒▒▒▒▒▒▒▒▒▒▒│┌─┐├┘└┐▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒││▒▒▒▒▒▒
-▒││┌┐┌┬──┬──┬──┐│└──┼┐┌┼──┬──┬──┬─┐┌──┬──┬─┬──┬──┤└─┬┐▒┌┐
-▒│││└┘│┌┐│┌┐││─┤└──┐│││││─┤┌┐│┌┐│┌┐┤┌┐│┌┐│┌┤┌┐│┌┐│┌┐││▒││
-┌┤├┤│││┌┐│└┘││─┤│└─┘││└┤│─┤└┘│┌┐││││└┘│└┘│││┌┐│└┘││││└─┘│
-└──┴┴┴┴┘└┴─┐├──┘└───┘└─┴──┴─┐├┘└┴┘└┴──┴─┐├┘└┘└┤┌─┴┘└┴─┐┌┘
-▒▒▒▒▒▒▒▒▒┌─┘│▒▒▒▒▒▒▒▒▒▒▒▒▒┌─┘│▒▒▒▒▒▒▒▒┌─┘│▒▒▒▒││▒▒▒▒┌─┘│▒
-▒▒▒▒▒▒▒▒▒└──┘▒▒▒▒▒▒▒▒▒▒▒▒▒└──┘▒▒▒▒▒▒▒▒└──┘▒▒▒▒└┘▒▒▒▒└──┘▒
+    
+█▀ ▀█▀ █▀▀ █▀▀ ▄▀█ █▄░█ █▀█ █▀▀ █▀█ ▄▀█ █▀▀ █   ▀█
+▄█ ░█░ ██▄ █▄█ █▀█ █░▀█ █▄█ █▄█ █▀▄ █▀█ █▀░ █   █▄
 '''
 #     art = '''
 # ██╗███╗░░░███╗░█████╗░░██████╗░███████╗
@@ -55,7 +50,7 @@ class Stegno:
     output_image_size = 0
 
     def main(self,root):
-        root.title('Image Steganography')
+        root.title('Steganografi - Kelompok 2')
         root.geometry('800x600')
         root.resizable(width =False, height=False)
         f = Frame(root)
@@ -97,7 +92,7 @@ class Stegno:
         l1 = Label(d_f2, text='Pilih gambar dengan Hidden text:')
         l1.config(font=('courier',18))
         l1.grid()
-        bws_button = Button(d_f2, text='Select', command=lambda :self.frame2_decode(d_f2))
+        bws_button = Button(d_f2, text='Pilih', command=lambda :self.frame2_decode(d_f2))
         bws_button.config(font=('courier',18))
         bws_button.grid()
         back_button = Button(d_f2, text='Cancel', command=lambda : Stegno.home(self,d_f2))
@@ -110,7 +105,7 @@ class Stegno:
         d_f3 = Frame(root)
         myfile = tkinter.filedialog.askopenfilename(filetypes = ([('png', '*.png'),('jpeg', '*.jpeg'),('jpg', '*.jpg'),('All Files', '*.*')]))
         if not myfile:
-            messagebox.showerror("Error","You have selected nothing !")
+            messagebox.showerror("Error","Kamu tidak memilih gambar!")
         else:
             myimg = Image.open(myfile, 'r')
             myimage = myimg.resize((300, 200))
@@ -133,7 +128,7 @@ class Stegno:
             back_button.config(font=('courier',11))
             back_button.grid(pady=15)
             back_button.grid()
-            show_info = Button(d_f3,text='More Info',command=self.info)
+            show_info = Button(d_f3,text='Detail Info',command=self.info)
             show_info.config(font=('courier',11))
             show_info.grid()
             d_f3.grid(row=1)
@@ -168,7 +163,7 @@ class Stegno:
         l1.config(font=('courier',18))
         l1.grid()
 
-        bws_button = Button(f2,text='Select',command=lambda : self.frame2_encode(f2))
+        bws_button = Button(f2,text='Pilih',command=lambda : self.frame2_encode(f2))
         bws_button.config(font=('courier',18))
         bws_button.grid()
         back_button = Button(f2, text='Cancel', command=lambda : Stegno.home(self,f2))
@@ -182,7 +177,7 @@ class Stegno:
         ep= Frame(root)
         myfile = tkinter.filedialog.askopenfilename(filetypes = ([('png', '*.png'),('jpeg', '*.jpeg'),('jpg', '*.jpg'),('All Files', '*.*')]))
         if not myfile:
-            messagebox.showerror("Error","You have selected nothing !")
+            messagebox.showerror("Error","Kamu tidak memilih gambar!")
         else:
             myimg = Image.open(myfile)
             myimage = myimg.resize((300,200))
@@ -290,7 +285,7 @@ class Stegno:
             newimg.save(tkinter.filedialog.asksaveasfilename(initialfile=temp,filetypes = ([('png', '*.png')]),defaultextension=".png"))
             self.d_image_size = my_file.tell()
             self.d_image_w,self.d_image_h = newimg.size
-            messagebox.showinfo("Success","Encoding Successful\nFile is saved as Image_with_hiddentext.png in the same directory")
+            messagebox.showinfo("Success","Encoding Successful\nFile is saved in the same directory")
 
     def page3(self,frame):
         frame.destroy()
